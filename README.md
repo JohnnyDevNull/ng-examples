@@ -1,4 +1,4 @@
-# RouteReuseStrategyLazyLoading
+# ng-examples
 
 ### [route-reuse-strategy-lazy-loading](./route-reuse-strategy-lazy-loading)
 Source: [Cache components with Angular RouteReuseStrategy](https://itnext.io/cache-components-with-angular-routereusestrategy-3e4c8b174d5f)
