@@ -20,7 +20,8 @@ import {AppReuseStrategy} from './services/app-reuse.strategy';
     TabsModule
   ],
   providers: [
-    {provide: RouteReuseStrategy, useClass: AppReuseStrategy}
+    AppReuseStrategy,
+    {provide: RouteReuseStrategy, useExisting: AppReuseStrategy}
   ],
   bootstrap: [AppComponent]
 })

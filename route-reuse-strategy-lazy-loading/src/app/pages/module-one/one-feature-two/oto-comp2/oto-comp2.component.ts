@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-oto-comp2',
@@ -8,6 +8,14 @@ import {Component} from '@angular/core';
     <p>Value: {{value}}</p>
   `
 })
-export class OtoComp2Component {
+export class OtoComp2Component implements OnInit, OnDestroy {
   public value: any = null;
+
+  public ngOnInit(): void {
+    console.log('OtoComp2Component ngOnInit');
+  }
+
+  public ngOnDestroy(): void {
+    console.log('OtoComp2Component ngOnDestroy');
+  }
 }

@@ -1,5 +1,7 @@
 import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from '@angular/router';
+import {ComponentRef, Injectable} from '@angular/core';
 
+@Injectable()
 export class AppReuseStrategy implements RouteReuseStrategy {
   private storedRouteHandles = new Map<string, DetachedRouteHandle>();
 
@@ -12,15 +14,18 @@ export class AppReuseStrategy implements RouteReuseStrategy {
   }
 
   public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle | null): void {
-    this.storedRouteHandles.set(this.getPath(route), handle);
+    const path = this.getPath(route);
+    this.storedRouteHandles.set(path, handle);
   }
 
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return !!route.data.reuse && this.storedRouteHandles.has(this.getPath(route));
+    const path = this.getPath(route);
+    return !!route.data.reuse && this.storedRouteHandles.has(path);
   }
 
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
-    return this.storedRouteHandles.has(this.getPath(route));
+    const path = this.getPath(route);
+    return this.storedRouteHandles.get(path) as DetachedRouteHandle;
   }
 
   private getPath(route: ActivatedRouteSnapshot): string {
@@ -28,5 +33,21 @@ export class AppReuseStrategy implements RouteReuseStrategy {
       .map(r => r.url)
       .filter(i => i.length > 0)
       .join('/');
+  }
+
+  public destroy(path: string | null = null): void {
+    if (path && this.storedRouteHandles.has(path)) {
+      const handler = this.storedRouteHandles.get(path);
+      this.destroySingle(path, handler);
+    } else if (this.storedRouteHandles.size > 0) {
+      Array.from(this.storedRouteHandles).forEach(
+        ([p, h]) => this.destroySingle(p, h)
+      );
+    }
+  }
+
+  private destroySingle(path, handler) {
+    ((handler as any).componentRef as ComponentRef<any>).destroy();
+    this.storedRouteHandles.delete(path);
   }
 }
