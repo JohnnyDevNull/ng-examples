@@ -9,6 +9,11 @@ import {NavbarItemsIface} from '@my/library';
 export class AppComponent {
   public navItems: NavbarItemsIface[] = [
     {text: 'Home', path: '/', icon: 'home'},
-    {text: 'Hello', icon: 'envelope'}
+    {text: 'Hello', path: '/hello', icon: 'envelope'},
+    {text: 'Noop', path: '/noop', icon: 'plus'}
   ];
+
+  public onNavbarItemClick(item) {
+    console.warn(item);
+  }
 }

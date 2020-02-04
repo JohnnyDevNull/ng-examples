@@ -63,7 +63,7 @@
               "projects/my-library-tester/src/assets"
             ],
             "styles": [
-              "projects/my-library-tester/src/styles.scss"
+              "projects/my-library-tester/src/scss/main.scss"
             ],
             "scripts": []
           },
@@ -128,7 +128,7 @@
               "projects/my-library-tester/src/assets"
             ],
             "styles": [
-              "projects/my-library-tester/src/styles.scss"
+              "projects/my-library-tester/src/scss/main.scss"
             ],
             "scripts": []
           }

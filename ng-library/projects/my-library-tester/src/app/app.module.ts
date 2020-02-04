@@ -4,9 +4,12 @@ import {MyLibraryModule, WindowRefService} from '@my/library';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {IconsModule} from './modules/icons/icons.module';
+import { HelloComponent } from './pages/hello/hello.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NoopComponent } from './pages/noop/noop.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HelloComponent, HomeComponent, NoopComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

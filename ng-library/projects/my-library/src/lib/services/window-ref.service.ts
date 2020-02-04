@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {sayHello} from '../functions/say-hello.func';
 
 interface MyWindow extends Window {
-  sayHello: () => void;
+  sayHello: () => string;
 }
 
 function _window(): Window {

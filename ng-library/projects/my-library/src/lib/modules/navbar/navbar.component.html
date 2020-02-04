@@ -1,14 +1,19 @@
-<div class="flex-container">
-  <div class="flex-item" *ngFor="let item of items" routerLinkActive="active">
-    <ng-container *ngIf="item.path; else noIcon">
-      <a [routerLink]="item.path" class="item-link">
-        <fa-icon [icon]="item.icon" *ngIf="item.icon"></fa-icon> {{item.text}}
-      </a>
-    </ng-container>
-    <ng-template #noIcon>
-      <span class="item-text">
-        <fa-icon [icon]="item.icon" *ngIf="item.icon"></fa-icon>{{item.text}}
-      </span>
-    </ng-template>
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <div class="collapse navbar-collapse">
+    <span class="navbar-brand mb-0 h1" *ngIf="brand">{{ brand }}</span>
+    <ul class="navbar-nav" *ngIf="items.length">
+      <li class="nav-item" *ngFor="let item of items; let i = index" routerLinkActive="active">
+        <ng-container *ngIf="item.path; else noIcon">
+          <a [routerLink]="item.path" class="nav-link" (click)="onItemClick(i)">
+            <fa-icon [icon]="item.icon" *ngIf="item.icon"></fa-icon> {{item.text}}
+          </a>
+        </ng-container>
+        <ng-template #noIcon>
+          <span class="navbar-text">
+            <fa-icon [icon]="item.icon" *ngIf="item.icon"></fa-icon> {{item.text}}
+          </span>
+        </ng-template>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

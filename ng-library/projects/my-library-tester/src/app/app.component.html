@@ -1,3 +1,14 @@
-<div class="container">
-  <my-navbar [items]="navItems"></my-navbar>
+<div class="container m-5">
+  <my-navbar
+    brand="ng-library"
+    [items]="navItems"
+    (itemClick)="onNavbarItemClick($event)"
+  ></my-navbar>
+  <div class="row">
+    <div class="col">
+      <div class="px-2 py-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>
